@@ -1,10 +1,17 @@
 // Importera nödvändiga moduler
-const express = require('express');
 var http = require('http');
 var url = require('url');
 var mysql = require('mysql');
 var querystring = require('querystring');
+
+const cors = require('cors');
+const express = require('express');
 const port = 3000;
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
 // Skapa en anslutning till MySQL-databasen
@@ -25,10 +32,7 @@ con.connect(function(err) { // anslut till databasen
 // Serve static files from the "public" directory, inte min kod...
 app.use(express.static('public'));
 
-// Starta servern på port 3000
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+
 
 
 // Skapa en tabell för att lagra positioner
@@ -55,4 +59,8 @@ app.post('/update-game-data', (req, res) => {
       if (err) throw err;
       res.send('Game data updated successfully');
   });
+});
+// Starta servern på port 3000
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
