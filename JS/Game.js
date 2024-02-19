@@ -83,21 +83,17 @@ document.onkeydown = function (e) {
 
 // Draws the game objects on the canvas
 function update() {
-  clearCanvas();
-
-  
-
-  
-
+  // Update the database with the current positions
+  serverLogic();
 
   //check if game is paused
   if (isPaused) {
     menu();
     return;
   }
+  clearCanvas();
 
   //The brainzzz of the operation
-  ticking();
   healthBar();
   scoreTracking();
   updateDotsPosition();
@@ -108,21 +104,11 @@ function update() {
   checkBounce();
   drawRects();
 
-  
-}
-
-function ticking() {
   // Checks the time that has passed since the game started
   ticks++;
   runtime = (ticks / 100) * updateFrequency; // seconds
   timer.innerHTML = "Time: " + runtime.toFixed(1) + "S"; // seconds
-
-  //GameSpeed that increases every 30 seconds
-  if (runtime % 30 == 0 && runtime != 0) {
-    dot.dx = dot.dx * 1.2;
-    dot.dy = dot.dy * 1.2;
-    paddleSpeed = paddleSpeed * 1.2;
-  }
+  
 }
 
 function paddelCollisionDetectionTM() {
@@ -306,7 +292,7 @@ function scoreTracking() {
   }
 }
 
-// ------------------------------------------------- Game Objects  ------------------------------------------------- //
+
 
 
 // ------------------------------------------------- Game Loops ------------------------------------------------- //
