@@ -1,69 +1,212 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Selection Screen</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .selection-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    }
-    .selection-container h1 {
-      text-align: center;
-    }
-    .selection-container button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .host-button {
-      background-color: #3498db;
-      color: #fff;
-    }
-    .client-button {
-      background-color: #2ecc71;
-      color: #fff;
-    }
-    .selection-container button {
-            width: 100%;
-            padding: 20px; /* increased padding */
-            margin-top: 20px;
-            font-size: 24px; /* increased font size */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex; /* added for icon alignment */
-            justify-content: center; /* added for icon alignment */
-            align-items: center; /* added for icon alignment */
-        }
-        .selection-container i {
-            margin-right: 10px;
-        }
-  </style>
-</head>
-<body>
-  <div class="selection-container">
-    <h1>Select Role</h1>
-    <button class="host-button" onclick="window.location.href='Host/host.html'">
-        Host
-    </button>
-    <button class="client-button" onclick="window.location.href='Client/client.html'">
-        Client
-    </button>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>DiKS</title>
+    <link rel="stylesheet" href="./css/defaultStyle.css" />
+    <link rel="stylesheet" href="./css/indexStyle.css" />
+
+
+
+  </head>
+  <body>
+    <header id="top-navbar">
+      <div class="menu-wrap">
+        <input type="checkbox" class="toggler" />
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="./html/about.html">About</a></li>
+                <li><a href="./html/contact.html">Contact</a></li>
+                <li><a href="./html/activities.html">Activities</a></li>
+                <li><a href="./html/traffic.html">Traffic</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav id="links">
+        <h1 id="title">Danderyd: The red star of Sweden!</h1>
+        <li>
+          <a href="#home">Home</a>
+          <div class="link-window">
+            <p>Our beautiful home of Danderyd!</p>
+            <a href="#">Home</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#about">About</a>
+          <div class="link-window">
+            <p>Would you like to know more?</p>
+            <a href="./html/about.html">About</a>
+          </div>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+          <div class="link-window">
+            <p>Contact us!</p>
+            <a href="./html/contact.html">Contact</a>
+          </div>
+        </li>
+        <li>
+          <a href="#activities">Activities</a>
+          <div class="link-window">
+            <p>The massive amount of activities available are listed here</p>
+            <a href="./html/activities.html">Activities</a>
+          </div>
+        </li>
+        <li>
+          <a href="#traffic">Traffic</a>
+          <div class="link-window">
+            <p>More information about the traffic</p>
+            <a href="./html/traffic.html">Traffic</a>
+          </div>
+        </li>
+      </nav>
+    </header>
+
+      <div class="hero-image">
+        <div class="hero-text">
+          <h1>I am Danderyd</h1>
+          <p>And this is were life happens</p>
+          <button id="join-the-cult" type="button" onclick="cultJoiner()">join-the-cult</button>
+        </div>
+      </div>
+    
+
+    <article id="danderyd-ad-text">
+      <h1 id="sovjet-title">Danderyd: The red star that shines from afar</h1>
+
+      <div class="image-section">
+        <img src="./images/nora-0.jpg" alt="Danderyd" style="margin-top: -5%" />
+      </div>
+
+      <div class="speaking-bubble speaking-bubble-left">
+        <h2>Danderyd: Where everyone is equal and happy</h2>
+        <p>
+          "Living in Danderyd is a great choice for anyone who enjoys nature,
+          culture and convenience" - Bing AI
+        </p>
+      </div>
+
+      <div class="image-section">
+        <img src="./images/samsoeviken-1.jpg" alt="Danderyd" />
+      </div>
+
+      <div class="speaking-bubble speaking-bubble-right">
+        <h2>
+          Danderyd: Unity in diversity, solidarity in adversity, prosperity in
+          sincerity
+        </h2>
+        <p>
+          Danderyd is a municipality in the northern part of Stockholm County,
+          with a population of about 34,000. It consists of four districts:
+          Danderyd, Djursholm, Enebyberg and Stocksund. Danderyd has many
+          beautiful lakes, forests and parks, as well as historical buildings
+          and cultural attractions. You can swim, fish, hike, bike or ski in the
+          scenic surroundings, or visit the Djursholm Castle, the Ekebyhov
+          Palace or the Edsberg Manor. Danderyd also has a rich musical
+          tradition, with several choirs, orchestras and bands.
+        </p>
+      </div>
+
+      <div class="image-section">
+        <img src="./images/danderyd.jpg" alt="Danderyd" />
+      </div>
+
+      <div id="row">
+        <div class="speaking-bubble speaking-bubble-center">
+          <h1>
+            Danderyd: no classes, no masses, no worries, no hurries, just peace
+            and ease, with public transport of Danderyd
+          </h1>
+          <p>
+            Living in Danderyd also means having easy access to the city center
+            of Stockholm, as well as other nearby towns and suburbs. Danderyd is
+            well connected by public transport, with buses, trains and metro
+            lines. You can reach Stockholm Central Station in about 15 minutes
+            by metro from Mörby Centrum, which is the largest shopping mall in
+            Danderyd. Mörby Centrum also has a library, a cinema, a gym and
+            various services and shops. You can also find other smaller shopping
+            areas and local markets in Danderyd.
+          </p>
+        </div>
+        <div class="speaking-bubble speaking-bubble-center">
+          <h1>
+            Danderyd: The people’s paradise, where everything is nice and fair
+            in price
+          </h1>
+          <p>
+            Living in Danderyd is a wonderful experience that offers you the
+            best of both worlds: nature and culture, tranquility and
+            convenience, history and modernity. If you are looking for a place
+            to call home in Stockholm County, you should definitely consider
+            living in Danderyd.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <footer>
+      <nav id="footer-nav">
+        <section id="home">
+          <h2>Welcome to our city!</h2>
+          <p>
+            Welcome to Danderyd, a beautiful and prosperous municipality in the
+            heart of Sweden. Here you can enjoy the nature, culture and history
+            of this charming place. Whether you are a resident, a visitor or a
+            business owner, you will find everything you need in Danderyd. We
+            are proud of our high-quality services, our friendly community and
+            our rich heritage. Come and discover Danderyd for yourself!
+          </p>
+        </section>
+        <section id="about">
+          <h2>About Our City</h2>
+          <p>
+            Danderyds kommun is a municipality in Stockholm County in east
+            central Sweden. It is one of the smallest municipalities of Sweden,
+            but the most affluent. Its seat is located in Djursholm, which is a
+            part of the Stockholm urban area12. The municipality has about
+            34,000 inhabitants and covers an area of 26.6 square kilometers1.
+            Danderyds kommun is a politically led organization by an alliance of
+            Moderata samlingspartiet, Liberalerna and Kristdemokraterna for the
+            mandate period 2022-20263. The municipality provides services and
+            information for its residents in areas such as education, health
+            care, culture, environment, business and traffic45.
+          </p>
+        </section>
+        <section id="contact">
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions or comments, please feel free to contact
+            us at any time. We are always happy to hear from you!
+          </p>
+        </section>
+        <section id="activities">
+          <h2>City Activities / services</h2>
+          <p>
+            Danderyds kommun provides a variety of services for its residents
+            and visitors in different areas such as education, health care,
+            culture, environment, business and traffic
+          </p>
+        </section>
+        <section id="traffic">
+          <h2>Traffic Information</h2>
+          <p>
+            According to ViaMichelin, the current traffic conditions in Danderyd
+            are moderate, with some congestion and delays on E18 and E423. There
+            are no reported accidents or roadworks in Danderyd at the moment.
+            The traffic flow is expected to increase during peak hours and
+            decrease during night time.
+          </p>
+        </section>
+      </nav>
+    </footer>
+    <script src="./js/cultButton.js" async defer></script>
+  </body>
 </html>

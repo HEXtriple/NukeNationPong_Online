@@ -1,0 +1,364 @@
+@media screen and (min-width: 300) {
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* Show the hamburger menu when the screen width is less than or equal to 600px */
+@media screen and (max-width: 600px) {
+  .hamburger-menu .menu {
+    display: none;
+  }
+}
+@media screen and (min-width: 900px) {
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(29, 53, 87, 0.519);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #8D99AE;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2B2D42;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgb(0, 0, 0) 30%,
+    transparent 30%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0.5) 80%,
+    transparent 80%,
+    transparent
+  );
+}
+}
+
+
+@font-face {
+  font-family: "empire";
+  src: url("../Fonts/TheEmpireDemoRegular.ttf");
+}
+
+#title{
+  font-family: "empire";
+  font-size: 3rem;
+  color: #2B2D42;
+  text-align: left;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 0;
+
+  overflow-y: show;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1#sovjet-title{
+  font-size: 2rem;
+  margin: 5vw;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/********** NAVIGATION MENU **********/
+
+header#top-navbar {
+  color: black;
+  padding: 20px;
+
+  top: 0;
+  margin-top: 0.5vw;
+  margin-bottom: 5vw;
+
+  background-color: #800f2f;
+  opacity: 8;
+  position: relative fixed;
+
+  width: 80vw;
+  height: auto;
+
+  border-width: 1px;
+  box-shadow: 5px 6px 7px #a8dadc, 10px 15px 15px #1d3557;
+  border-top-left-radius: 45px;
+  border-bottom-right-radius: 46px;
+}
+nav#links ul {
+  font-size: 2rem;
+  display: block;
+  margin: 4vw;
+  
+  float: left;
+  
+  text-align: center;
+  text-decoration: underline;
+  list-style: none;
+  padding: 10px;
+}
+nav#links li {
+  display: inline-block;
+  margin-left: 4vw;
+}
+
+nav#links a {
+  color: #a8dadc;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav#links a:hover {
+  color: #1d3557;
+
+  border: 1px solid #1d3557;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
+
+/********** HAMBURGER MENU **********/
+.menu-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.menu-wrap .toggler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
+.menu-wrap .hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger{
+}
+
+/* Hamburger Line */
+.menu-wrap .hamburger > div {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+}
+
+/* Hamburger Lines - Top & Bottom */
+.menu-wrap .hamburger > div:before,
+.menu-wrap .hamburger > div:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: inherit;
+    height: inherit;
+    background-color: inherit; 
+}
+
+/* Moves Line Down */
+.menu-wrap .hamburger > div:before {
+    transform: translateY(-10px);
+}
+
+/* Moves Line Up */
+.menu-wrap .hamburger > div:after {
+    transform: translateY(10px);
+}
+
+/* Toggler Animation */
+.menu-wrap .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+
+/* Turns Lines Into X */
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
+    top: -2px; 
+    transform-origin:center; 
+}
+
+/* Rotate First Line */
+.menu-wrap .toggler:checked + .hamburger > div:before {
+    transform-origin:center; 
+    transform : rotate(90deg) translateX(-10px);
+}
+
+/* Rotate Second Line */
+.menu-wrap .toggler:checked + .hamburger > div:after {
+    transform-origin:center; 
+    transform : rotate(90deg) translateX(10px);
+}
+
+/* Rotate Icon */
+.menu-wrap .toggler:checked + .hamburger > div {
+    transform : rotate(225deg);
+}
+
+/* Show Menu */
+.menu-wrap .toggler:checked ~ .menu {
+    visibility : visible; 
+}
+
+.menu-wrap .toggler:checked ~ .menu > div {
+    transform : scale(1); 
+    transition-duration : var(--menu-speed); 
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div {
+    opacity :1; 
+    transition : opacity var(--menu-speed) linear; 
+}
+
+.menu {
+   position : fixed; 
+   top :0; 
+   left :0; 
+   width :40vw; 
+   height :100%; 
+   visibility : hidden; 
+   overflow : hidden; 
+   display : flex; 
+   align-items : center; 
+   justify-content : center; 
+}
+
+.menu > div {
+   background-color : rgba(255,255,255,.56); 
+   border-radius :50%; 
+   width :200vw; 
+   height :200vw; 
+   display : flex; 
+   flex : none; 
+   align-items : center; 
+   justify-content : center; 
+   transform : scale(0); 
+   transition : all var(--menu-speed) ease-out;  
+}
+
+.menu > div > div {
+   text-align:center;  
+   max-width :90vw;  
+   max-height :100vh;  
+   opacity :0;  
+   transition : opacity var(--menu-speed) linear;  
+}
+
+.menu > div > div ul li {
+   list-style:none;  
+   color:#000;  
+   font-size :1.5rem;  
+   padding:.5rem
+}
+
+
+/********** Hover Menu **********/
+
+#links li {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.link-window {
+  z-index: 1;
+  visibility: hidden;
+  width: 10vw;
+  height: auto;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+}
+
+li:hover .link-window {
+  animation: slideFromText 0.5s ease-out forwards; 
+  visibility: visible;
+
+  box-shadow: 15px 15px 0px #2B2D42, -5px -5px 30px #a8dadc;
+}
+
+@keyframes slideFromText {
+  from {
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+  to {
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+footer {
+  display: block;
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  height: 60vh;
+  background-color: #2B2D42;
+  opacity: 8;
+  overflow: hidden;
+  border-width: 1px;
+  box-shadow: 5px 6px 7px #a8dadc, 10px 15px 15px #1d3557;
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 46px;
+}
+
+nav#footer-nav {
+  display: block;
+  position: absolute;
+  justify-content: space-around;
+  align-items: center;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav#footer-nav section {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav#footer-nav p{
+  font-size: 1rem;
+  font-weight: normal;
+}

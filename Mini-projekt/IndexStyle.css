@@ -1,0 +1,132 @@
+@media screen and (min-width: 300px) {
+  .bubble {
+    overflow-y: scroll;
+    width: 100vw;
+    height: auto;
+    margin-bottom: 5vw;
+  }
+  .bubble::-webkit-scrollbar{
+    display: none;
+  }
+}
+@media screen and (min-width: 900px) {
+  .bubble {
+    animation: none;
+    overflow-y: scroll;
+    width: 40vw;
+    height: 40vw;
+    margin: 5vw;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .bubble {
+    animation: ease-in dynamicBubble 10s infinite;
+    width: 30vw;
+    height: 30vw;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  .bubble:hover {
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+
+/* Pro bubble tech */
+.bubble {
+  transition: 3s;
+  display: inline;
+  text-align: center;
+
+  font-size: 1.5em;
+  font-family: AboutFont;
+  background-color: white;
+
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.7),
+    10px 10px 0px rgba(29, 53, 87, 0.7), 15px 15px 4px rgba(0, 0, 0, 0.7);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.bubble:hover {
+  animation-play-state: paused;
+  transition: 3s;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.7),
+    30px 30px 0px rgba(29, 53, 87, 0.7), 40px 40px 20px rgba(0, 0, 0, 0.7);
+  overflow-y: scroll;
+}
+
+footer.complaint-page {
+  font-family: AboutFont;
+  font-size: 1.5em;
+  text-align: center;
+
+  border-style: solid;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+
+  width: 100vw;
+  height: auto;
+  position: absolute;
+  background: linear-gradient(
+    to bottom,
+    rgba(168, 218, 220, 1) 5%,
+    rgba(241, 250, 238, 0.7) 20%,
+    rgba(164, 19, 60, 0.7) 50%
+  );
+}
+
+div#index-form-left, div#index-form-right {
+  margin: 5vw;
+}
+
+.write {
+  height: 5vh;
+  width: 20vw;
+
+  border-radius: 90px;
+  border-style: solid;
+  border-left-style: none;
+  border-right-style: none;
+  border-width: 0.5vh;
+
+  padding: 2vw;
+  
+}
+
+textarea.write {
+  height: 20vh;
+  border-radius: 20px;
+  width: 20vw;
+  border-width: 0.5vh;
+}
+
+.write::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes dynamicBubble {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(5px, 30px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(-5px, -30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

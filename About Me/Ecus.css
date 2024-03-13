@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+@font-face{
+  font-family: CyberFonk;
+  src: url(CyberPunk.ttf);
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+
+img{
+    padding-right: 20px;
+    padding-left: 20%;
+    max-width: 1000px;
+}
+
+nav {
+  display: flex;
+  background-color:aliceblue;
+  max-height: 1000px;
+  max-width: 100%;
+  border-radius: 10%;
+  box-shadow: 0px 5px 10px grey;
+
+}
+
+nav a {
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.menu {
+  padding-top: 10px;
+  list-style: none;
+  display: flex;
+}
+.cyber{
+  font-family: CyberFonk;
+}
+
+/* Den här stilregeln beskriver hur en länk ser ut i det menu-item som är active.*/
+.menu-item.active a {
+    color: purple;
+    text-decoration: underline;
+    text-decoration-color: #bbe861;
+    font-weight: bold;
+}
+
+/* I den här stilregeln kan du sätta hover-utseende på länkarna i menyn.*/
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav a.button {
+    background-color: darkslategrey;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 5px;
+    height: 30px;
+    color: azure;
+}
+
+
+.push-right {
+  padding-left: 350px;
+  
+}
