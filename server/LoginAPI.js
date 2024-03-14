@@ -21,12 +21,6 @@ con.connect(function(err) { // anslut till databasen
   console.log("Connected");
 });
 
-const path = require('path');
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-
 //GET
 app.get('/user', (req, res) => {
   con.query('SELECT userName FROM users', (err, rows) => {
@@ -79,7 +73,7 @@ app.delete('/user/:id', (req, res) => {
 
 
 
-//jwt 
+//Login API 
 function hash(data) {
   const hash = crypto.createHash('sha256');
   hash.update(data);
@@ -102,7 +96,7 @@ app.post('/login', (req, res) => {
   });
 });
 
-app.get('/userscheck/:id', (req, res) => {
+app.get('/loginSession/:id', (req, res) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     res.status(401).send('Unauthorized');
