@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 //GET
 app.get('/user', (req, res) => {
-  con.query('SELECT userId FROM users', (err, rows) => {
+  con.query('SELECT userName FROM users', (err, rows) => {
     if(err) throw err;
     res.send(rows);
   });
@@ -44,8 +44,8 @@ app.get('/users/:id', (req, res) => {
 
 //POST
 app.post('/user', (req, res) => {
-  const { firstname, lastname, userId, passwd} = req.body;
-  con.query('INSERT INTO users (firstname, lastname, userId, passwd) VALUES (?, ?, ?, ?)', [firstname, lastname, userId, passwd], (err, result) => {
+  const { name, userName, passwd} = req.body;
+  con.query('INSERT INTO users (name, userName, passwd) VALUES (?, ?, ?, ?)', [name, userName, passwd], (err, result) => {
     if (err) throw err;
     const insertedId = result.insertId;
     con.query('SELECT * FROM users WHERE id = ?', [insertedId], (err, rows) => {
@@ -59,8 +59,8 @@ app.post('/user', (req, res) => {
 
 //PUT
 app.put('/user/:id', (req, res) => {
-  const { firstname, lastname, userId, passwd } = req.body;
-  con.query('UPDATE users SET firstname = ?, lastname = ?, userId = ?, passwd = ? WHERE id = ?', [firstname, lastname, userId, passwd, req.params.id], (err, result) => {
+  const { name, userName, passwd } = req.body;
+  con.query('UPDATE users SET name, userName = ?, passwd = ? WHERE id = ?', [name, userName, passwd, req.params.id], (err, result) => {
     if (err) throw err;
     con.query('SELECT * FROM users WHERE id = ?', [req.params.id], (err, rows) => {
       if (err) throw err;
@@ -88,13 +88,13 @@ function hash(data) {
 
 
 app.post('/login', (req, res) => {
-  const {userId, passwd} = req.body;
-  con.query('SELECT * from users WHERE userId = ? AND passwd = ?', [userId, hash(passwd)], (err, result) => {
+  const {userName, passwd} = req.body;
+  con.query('SELECT * from users WHERE userName = ? AND passwd = ?', [userName, hash(passwd)], (err, result) => {
     console.log(result);
     if (err) {
       throw err;
     } else if (result.length > 0) {
-      const token = jwt.sign({ userId: result[0].userId }, 'secret', { expiresIn: '1h' });
+      const token = jwt.sign({ userName: result[0].userName }, 'secret', { expiresIn: '1h' });
       res.send({ token });
     } else {
       res.status(401).send('Invalid username or password');
