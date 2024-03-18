@@ -15,27 +15,31 @@ if ($conn->connect_error) {
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$username = $_SESSION["userName"];
-$email = $_POST["email"];
-$comment = $_POST["comment"];
+  $username = $_SESSION["userName"];
+  $email = $_POST["email"];
+  $comment = $_POST["comment"];
 
-$sql = "INSERT INTO posts (username, email, comment, time) VALUES ('$username', '$email', '$comment', now())";
+  $sql = "INSERT INTO posts (username, email, comment, time) VALUES ('$username', '$email', '$comment', now())";
 
-if ($conn->query($sql) !== TRUE) {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-} else {
-  echo "New record created successfully";
-}
-
-$sql = "SELECT id, username, email, comment, time FROM posts ORDER BY time DESC";
-$result = $conn->query($sql);
-
-if ($result && $result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " - username: " . $row["username"]. " " . $row["email"]. "<br>";
+  if ($conn->query($sql) !== TRUE) {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  } else {
+    echo "New record created successfully";
   }
-}
-$conn->close();
+
+  $sql = "SELECT username, email, comment, time FROM posts ORDER BY time DESC";
+  $result = $conn->query($sql);
+
+  if ($result && $result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      echo "username: " . $row["username"]. " " . $row["email"]. "<br>";
+      echo "comment: " . $row["comment"]. "<br>";
+      echo "time: " . $row["time"]. "<br>";
+    }
+  } else {
+    echo "0 results";
+  }
+  $conn->close();
 }
 ?>
 

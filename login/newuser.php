@@ -16,17 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $new_username = $_POST["username"];
   $new_password = $_POST["passwd"];
 
-  $sql = "INSERT INTO users (username, passwd) VALUES ('$new_username', '$new_password')";
+  $sql = "INSERT INTO users (userName, passwd) VALUES ('$new_username', '$new_password')";
 
   if ($conn->query($sql) === TRUE) {
     echo "New user created successfully";
+    header('Location: login.html');
   } else {
     echo "Error: " . $conn->error;
   }
 
   $conn->close();
 }
-W?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,7 @@ W?>
     </style>
 </head>
 <body>
-    <form id="loginForm" action="login.html" method="post">
+    <form id="loginForm" method="post">
         <div class="container">
           <label for="username"><b>Användarnamn</b></label>
           <input type="text" placeholder="Enter Username" name="username" required>
