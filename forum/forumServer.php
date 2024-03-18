@@ -17,7 +17,7 @@ $name = $_POST["name"];
 $email = $_POST["email"];
 $comment = $_POST["comment"];
 
-$sql = "INSERT INTO Guestbook (name, email, comment, time) VALUES ('$name', '$email', '$comment', now())";
+$sql = "INSERT INTO posts (name, email, comment, time) VALUES ('$name', '$email', '$comment', now())";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
@@ -25,7 +25,7 @@ if ($conn->query($sql) === TRUE) {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$sql = "SELECT id, name, email, comment, time FROM Guestbook";
+$sql = "SELECT id, name, email, comment, time FROM posts ORDER BY time DESC";
 $result = $conn->query($sql);
 
 

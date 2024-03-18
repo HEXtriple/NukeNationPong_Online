@@ -9,17 +9,35 @@
 
 <h2>Inloggning</h2>
 
-<form action="login.php" method="post">
+<form id="loginForm" action="login.php" method="post">
   <div class="container">
     <label for="username"><b>Användarnamn</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
     <label for="passwd"><b>Lösenord</b></label>
-    <input type="password" placeholder="Enter Password" name="passwd" required>
+    <input type="password" placeholder="Enter Password" name="passwd" id="passwd" required>
 
     <button type="submit">Logga in</button>
   </div>
 </form>
   
 </body>
+
+<script>
+
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const passwdInput = document.getElementById('passwd');
+  const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(passwdInput.value));
+  
+  const hashedPassword = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  passwdInput.value = hashedPassword;
+  
+  alert(`Hashed password: ${hashedPassword}`);
+  
+  this.submit();
+});
+</script>
+  
 </html>

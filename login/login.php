@@ -16,14 +16,17 @@ $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 
 $login_success = false;
-$full_name = "";
 
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
-    if($row["userId"] == $_POST["username"] && $row["passwd"] == $_POST["password"]) {
-      $login_success = true;
-      $full_name = $row["firstname"] . " " . $row["lastname"];
-      break;
+    if(isset($_POST["username"]) && isset($_POST["passwd"])) {
+      if($row["userId"] == $_POST["username"] && $row["passwd"] == $_POST["passwd"]) {
+        $login_success = true;
+        break;
+      }
+    } else {
+      echo "Username or password not provided.";
+      exit;
     }
   }
 } else {
