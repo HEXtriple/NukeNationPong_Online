@@ -20,7 +20,7 @@ $login_success = false;
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     if(isset($_POST["username"]) && isset($_POST["passwd"])) {
-      if($row["userId"] == $_POST["username"] && $row["passwd"] == $_POST["passwd"]) {
+      if($row["userName"] == $_POST["username"] && $row["passwd"] == $_POST["passwd"]) {
         $login_success = true;
         break;
       }
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     }
   }
 } else {
-  echo "0 results";
+  echo "No users found. ";
 }
 
 $conn->close();
@@ -38,12 +38,19 @@ $conn->close();
 // Checks If login was successful
 if ($login_success) {
   session_start();
-  echo "Welcome, " . $full_name . "!";
-  $_SESSION["username"] = $_POST["username"];
-  $upload_html = file_get_contents('upload.html');
-  echo $upload_html;
+  $_SESSION["userName"] = $_POST["username"];
+  echo "Login successful. Welcome " . $_SESSION["userName"];
+  echo "<br>";
+  echo " Go to account: <a href='account.php'>Account</a>";
+  echo "<br>";
+  echo "Logout: <a href='logout.php'>Logout</a>";
+  echo "<br>";
+  echo "Go to forum: <a href='../forum/forum.php'>Forum</a>";
   
 } else {
   echo "Login failed. Please check your username and password.";
+  echo "Would you like to create a new user?";
+  echo "<br>";
+  echo "<a href='newuser.php'>Create new user</a>";
 }
 ?>
