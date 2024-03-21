@@ -43,8 +43,6 @@ if ($login_success) {
   echo "<br>";
   echo " Go to account: <a href='account.php'>Account</a>";
   echo "<br>";
-  echo "Logout: <a href='logout.php'>Logout</a>";
-  echo "<br>";
   echo "Go to forum: <a href='../forum/forum.php'>Forum</a>";
   
 } else {

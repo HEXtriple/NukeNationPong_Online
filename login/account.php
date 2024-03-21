@@ -21,6 +21,9 @@ else {
 <body>
 <form method="post">
     <input type="submit" name="delete" value="Delete Account">
+    <input type="submit" name="logout" value="Logout">
+    <input type="submit" name="update_human" value="change login details">
+    <input type="submit" name="forum" value="Forum">
   </form>
   
 </body>
@@ -50,6 +53,22 @@ if(isset($_POST["delete"])) {
   } else {
     echo "Error deleting account: " . $conn->error;
   }
+}
+
+if(isset($_POST["logout"])) {
+  session_destroy();
+  header('Location: login.html');
+  exit();
+}
+
+if(isset($_POST["update_human"])) {
+  header('Location: update_human.php');
+  exit();
+}
+
+if(isset($_POST["forum"])) {
+  header('Location: ../forum/forum.php');
+  exit();
 }
 $conn->close();
 ?>
