@@ -16,15 +16,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $new_username = $_POST["username"];
   $new_password = $_POST["passwd"];
 
-  $sql = "INSERT INTO users (userName, passwd) VALUES ('$new_username', '$new_password')";
+  $stmt = $conn->prepare("INSERT INTO users (userName, passwd) VALUES (?, ?)");
+  $stmt->bind_param("ss", $new_username, $new_password);
 
-  if ($conn->query($sql) === TRUE) {
+  if ($stmt->execute()) {
     echo "New user created successfully";
     header('Location: login.html');
   } else {
-    echo "Error: " . $conn->error;
+    echo "Error: " . $stmt->error;
   }
 
+  $stmt->close();
   $conn->close();
 }
 ?>
@@ -93,9 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   const hashedPassword = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
   passwdInput.value = hashedPassword;
-  
-  alert(`Hashed password: ${hashedPassword}`);
-  
+    
   this.submit();
 });
 </script>

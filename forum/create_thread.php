@@ -15,10 +15,27 @@ if ($conn->connect_error) {
 // Get the title from the POST parameters
 $title = $_POST['title'];
 
-$sql = "INSERT INTO threads (title) VALUES ('$title')";
-$conn->query($sql);
+// Check if the title is empty
+if (empty($title)) {
+  echo "<script>alert('Title cannot be empty');</script>";
+} else {
+  // Check if a similarly named thread already exists
+  $stmt = $conn->prepare("SELECT * FROM threads WHERE title = ?");
+  $stmt->bind_param("s", $title);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-// Redirect the user back to the forum page
-header("Location: forum.php");
-exit();
+  if ($result->num_rows > 0) {
+    echo "<script>alert('A thread with the same title already exists');</script>";
+  } else {
+    // Insert the new thread into the database
+    $stmt = $conn->prepare("INSERT INTO threads (title) VALUES (?)");
+    $stmt->bind_param("s", $title);
+    $stmt->execute();
+
+    // Redirect the user back to the forum page
+    header("Location: forum.php");
+    exit();
+  }
+}
 ?>

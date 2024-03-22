@@ -16,10 +16,12 @@ $email = $_POST['email'];
 $comment = $_POST['comment'];
 $thread_id = $_POST['thread_id'];
 
-$sql = "INSERT INTO posts (email, comment, thread_id) VALUES ('$email', '$comment', '$thread_id')";
-$conn->query($sql);
+$sql = "INSERT INTO posts (email, comment, thread_id) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $email, $comment, $thread_id);
+$stmt->execute();
 
 // Redirect the user back to the thread page
-header("Location: threads.php?id=" . $thread_id);
+header("Location: thread.php?id=" . $thread_id);
 exit();
 ?>
