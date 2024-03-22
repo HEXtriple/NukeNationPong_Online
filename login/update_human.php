@@ -57,4 +57,6 @@ if (isset($_POST["submit"])) {
     } else {
       echo "Invalid request method.";
     }
+  }
+}
 ?>
