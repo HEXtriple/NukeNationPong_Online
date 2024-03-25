@@ -29,6 +29,7 @@ if ($result && $result->num_rows > 0) {
     echo "username: " . $row["username"]. " >>> " . $row["email"]. "<br>";
     echo "comment: " . $row["comment"]. "<br>";
     echo "time: " . $row["time"]. "<br>";
+    echo "<br>";
   }
 } else {
   echo "No posts in this thread";
@@ -48,7 +49,7 @@ $conn->close();
 <form method="post" action="create_post.php">
   Email: <input type="text" name="email"><br>
   Comment: <textarea name="comment"></textarea><br>
-  <input type="hidden" name="thread_id" value="<?php echo $thread_id; ?>">
+  <input type="hidden" name="thread_id" value="<?php echo $thread_id; ?>"><br>
   <input type="submit">
 </form>
   

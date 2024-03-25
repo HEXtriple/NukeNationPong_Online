@@ -20,9 +20,10 @@ else {
 </head>
 <body>
 <form method="post">
-    <input type="submit" name="delete" value="Delete Account">
-    <input type="submit" name="logout" value="Logout">
-    <input type="submit" name="update_human" value="change login details">
+    <input type="submit" name="delete" value="Delete Account"><br>
+
+    <input type="submit" name="logout" value="Logout"><br>
+    <input type="submit" name="update_human" value="change login details"><br> 
     <input type="submit" name="forum" value="Forum">
   </form>
   
