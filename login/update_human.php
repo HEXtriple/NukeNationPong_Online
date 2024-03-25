@@ -28,35 +28,26 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 session_start();
-
 if (isset($_POST["submit"])) {
-
   if(isset($_SESSION["userName"])) {
     $username = $_SESSION["userName"];
     $newName = $_POST['newName'];
     $newPassword = $_POST['newPassword'];
 
-    if (isset($_POST["submit"])) {
+    $sql = "UPDATE users SET userName=?, passwd=? WHERE userName=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $newName, $newPassword, $username);
 
-      if(isset($_SESSION["userName"])) {
-        $username = $_SESSION["userName"];
-        $newName = $_POST['newName'];
-        $newPassword = $_POST['newPassword'];
-
-        $sql = "UPDATE users SET userName='$newName', passwd='$newPassword' WHERE userName='$username'";
-
-        if ($conn->query($sql) === TRUE) {
-          echo "Account information updated successfully.";
-          $_SESSION["userName"] = $newName; // Update the session variable
-        } else {
-          echo "Error updating account information: " . $conn->error;
-        }
-      } else {
-        echo "No user is logged in.";
-      }
+    if ($stmt->execute()) {
+      echo "Account information updated successfully.";
+      $_SESSION["userName"] = $newName; // Update the session variable
     } else {
-      echo "Invalid request method.";
+      echo "Error updating account information: " . $stmt->error;
     }
+  } else {
+    echo "No user is logged in.";
   }
+} else {
+  echo "Invalid request method.";
 }
 ?>

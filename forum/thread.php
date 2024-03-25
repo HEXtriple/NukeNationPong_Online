@@ -26,7 +26,7 @@ $result = $stmt->get_result();
 
 if ($result && $result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
-    echo "username: " . $row["username"]. " " . $row["email"]. "<br>";
+    echo "username: " . $row["username"]. " >>> " . $row["email"]. "<br>";
     echo "comment: " . $row["comment"]. "<br>";
     echo "time: " . $row["time"]. "<br>";
   }

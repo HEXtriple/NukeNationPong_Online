@@ -15,10 +15,11 @@ if ($conn->connect_error) {
 $email = $_POST['email'];
 $comment = $_POST['comment'];
 $thread_id = $_POST['thread_id'];
+$username = $_SESSION["userName"];
 
-$sql = "INSERT INTO posts (email, comment, thread_id) VALUES (?, ?, ?)";
+$sql = "INSERT INTO posts (email, comment, thread_id, username) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $email, $comment, $thread_id);
+$stmt->bind_param("ssss", $email, $comment, $thread_id, $username);
 $stmt->execute();
 
 // Redirect the user back to the thread page
