@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
   if(isset($_SESSION["userName"])) {
     $username = $_SESSION["userName"];
     $newName = $_POST['newName'];
-    $newPassword = $_POST['newPassword'];
+    $newPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
 
     $sql = "UPDATE users SET userName=?, passwd=? WHERE userName=?";
     $stmt = $conn->prepare($sql);

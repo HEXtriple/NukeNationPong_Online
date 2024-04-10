@@ -30,6 +30,17 @@ if ($result && $result->num_rows > 0) {
     echo "comment: " . $row["comment"]. "<br>";
     echo "time: " . $row["time"]. "<br>";
     echo "<br>";
+
+    echo "<form method='post' action='like_post.php'>";
+    echo "<input type='hidden' name='post_id' value='" . $row["id"] . "'>";
+    echo "<input type='submit' value='Like'>";
+    echo "</form>";
+
+    echo "<form method='post' action='unlike_post.php'>";
+    echo "<input type='hidden' name='post_id' value='" . $row["id"] . "'>";
+    echo "<input type='submit' value='Unlike'>";
+    echo "</form>";
+    echo "<br>";
   }
 } else {
   echo "No posts in this thread";

@@ -20,7 +20,7 @@ $login_success = false;
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     if(isset($_POST["username"]) && isset($_POST["passwd"])) {
-      if($row["userName"] == $_POST["username"] && $row["passwd"] == $_POST["passwd"]) {
+      if($row["userName"] == $_POST["username"] && password_verify($_POST["passwd"], $row["passwd"])) {
         $login_success = true;
         break;
       }

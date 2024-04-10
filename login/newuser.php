@@ -14,7 +14,8 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $new_username = $_POST["username"];
-  $new_password = $_POST["passwd"];
+  $new_password = password_hash($_POST["passwd"], PASSWORD_DEFAULT);
+
 
   $stmt = $conn->prepare("INSERT INTO users (userName, passwd) VALUES (?, ?)");
   $stmt->bind_param("ss", $new_username, $new_password);
@@ -86,17 +87,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </body>
-<script>
-  document.getElementById('loginForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const passwdInput = document.getElementById('passwd');
-  const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(passwdInput.value));
-  
-  const hashedPassword = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-  passwdInput.value = hashedPassword;
-    
-  this.submit();
-});
-</script>
 </html>

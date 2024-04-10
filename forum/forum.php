@@ -32,8 +32,13 @@ $conn->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create a new thread</title>
+  <script>
+   
+  </script>
 </head>
 <body>
+<div id="chatbot"></div>
+<button onclick="generateChatbot()">Generate Chatbot Response</button>
 
 <form method="post" action="create_thread.php">
   Title: <input type="text" name="title"><br>
