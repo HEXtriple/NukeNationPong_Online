@@ -18,8 +18,11 @@ if ($conn->connect_error) {
 $thread_id = $_GET['id'];
 
 // Fetch all posts in the thread
-$sql = "SELECT * FROM posts WHERE thread_id = ?";
-$stmt = $conn->prepare($sql);
+$sql = "SELECT posts.*, COUNT(likes.id) as likes_count 
+        FROM posts 
+        LEFT JOIN likes ON posts.id = likes.post_id 
+        WHERE posts.thread_id = ? 
+        GROUP BY posts.id";$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $thread_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -29,15 +32,18 @@ if ($result && $result->num_rows > 0) {
     echo "username: " . $row["username"]. " >>> " . $row["email"]. "<br>";
     echo "comment: " . $row["comment"]. "<br>";
     echo "time: " . $row["time"]. "<br>";
+    echo "likes: " . $row["likes_count"]. "<br>"; 
     echo "<br>";
 
     echo "<form method='post' action='like_post.php'>";
     echo "<input type='hidden' name='post_id' value='" . $row["id"] . "'>";
+    echo "<input type='hidden' name='username' value='" . $_SESSION["userName"] . "'>";
     echo "<input type='submit' value='Like'>";
     echo "</form>";
 
     echo "<form method='post' action='unlike_post.php'>";
     echo "<input type='hidden' name='post_id' value='" . $row["id"] . "'>";
+    echo "<input type='hidden' name='username' value='" . $_SESSION["userName"] . "'>";
     echo "<input type='submit' value='Unlike'>";
     echo "</form>";
     echo "<br>";
