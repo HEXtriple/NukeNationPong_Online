@@ -17,12 +17,29 @@ if ($conn->connect_error) {
 // Get the thread id from the GET parameters
 $thread_id = $_GET['id'];
 
+//Get title from thread
+$sql = "SELECT * FROM threads";
+$result = $conn->query($sql);
+
+
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    if ($row["id"] == $thread_id) {
+      echo "<h1> Title: " . $row["title"]. "</h1>";
+    }
+  }
+}
+echo "<h2>Back to <a href='forum.php'>forum</a></h2>";
+echo "<br>";
+
 // Fetch all posts in the thread
 $sql = "SELECT posts.*, COUNT(likes.id) as likes_count 
         FROM posts 
         LEFT JOIN likes ON posts.id = likes.post_id 
         WHERE posts.thread_id = ? 
-        GROUP BY posts.id";$stmt = $conn->prepare($sql);
+        GROUP BY posts.id";
+
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $thread_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -64,7 +81,6 @@ $conn->close();
 <body>
 
 <form method="post" action="create_post.php">
-  Email: <input type="text" name="email"><br>
   Comment: <textarea name="comment"></textarea><br>
   <input type="hidden" name="thread_id" value="<?php echo $thread_id; ?>"><br>
   <input type="submit">

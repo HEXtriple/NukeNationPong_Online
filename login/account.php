@@ -24,6 +24,7 @@ else {
 
     <input type="submit" name="logout" value="Logout"><br>
     <input type="submit" name="update_human" value="change login details"><br> 
+    <input type="submit" name="add_email" value="add email to account for forum functionality"><br> 
     <input type="submit" name="forum" value="Forum">
   </form>
   
@@ -64,6 +65,11 @@ if(isset($_POST["logout"])) {
 
 if(isset($_POST["update_human"])) {
   header('Location: update_human.php');
+  exit();
+}
+
+if(isset($_POST["add_email"])) {
+  header('Location: add_email.php');
   exit();
 }
 

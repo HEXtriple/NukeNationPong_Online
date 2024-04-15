@@ -27,9 +27,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
 session_start();
+
 if (isset($_POST["submit"])) {
   if(isset($_SESSION["userName"])) {
+
     $username = $_SESSION["userName"];
     $newName = $_POST['newName'];
     $newPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
@@ -47,7 +50,5 @@ if (isset($_POST["submit"])) {
   } else {
     echo "No user is logged in.";
   }
-} else {
-  echo "Invalid request method.";
 }
 ?>
