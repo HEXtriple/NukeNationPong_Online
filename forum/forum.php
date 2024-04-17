@@ -37,13 +37,14 @@ $conn->close();
   </script>
 </head>
 <body>
-<div id="chatbot"></div>
-<button onclick="generateChatbot()">Generate Chatbot Response</button>
 
 <form method="post" action="create_thread.php">
   Title: <input type="text" name="title"><br>
   <input type="submit" value="Create thread">
 </form>
+
+<a href="../login/account.php"> <h3>Back to Account</h3></a>
+<a href="../index.html"> <h3>Home</h3></a>
   
 </body>
 </html>

@@ -51,4 +51,7 @@ if (isset($_POST["submit"])) {
     echo "No user is logged in.";
   }
 }
+
+echo '<a href="../login/account.php"> <h3>Back to Account</h3></a>'
+
 ?>

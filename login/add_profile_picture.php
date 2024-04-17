@@ -31,6 +31,7 @@ if (isset($_POST["submit"])) {
   $target_file = $target_dir . basename($_FILES["profilePicture"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  $username = $_SESSION["userName"];
 
   // Check if image file is a actual image or fake image
   $check = getimagesize($_FILES["profilePicture"]["tmp_name"]);
@@ -65,12 +66,24 @@ if (isset($_POST["submit"])) {
     echo "Sorry, your file was not uploaded.";
   } else {
     if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)) {
-      echo "The file ". htmlspecialchars( basename( $_FILES["profilePicture"]["name"])). " has been uploaded.";
+      echo "The profile pictures has been uploaded.";
+      $sql = "UPDATE users SET profile_picture=? WHERE userName=?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ss", $target_file, $username);
+
+      if ($stmt->execute()) {
+        echo "Profile picture updated successfully.";
+      } else {
+        echo "Error updating profile picture: " . $stmt->error;
+      }
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
   }
 }
+echo "<br>";
+echo "<h2>Back to <a href='account.php'>account</a></h2>";
+echo "<br>";
 
 $conn->close();
 ?>
