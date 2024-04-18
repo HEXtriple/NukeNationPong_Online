@@ -15,11 +15,11 @@ if ($conn->connect_error) {
 // Get the title from the POST parameters
 $title = $_POST['title'];
 
-// Check if the title is empty
 if (empty($title)) {
   echo "<script>alert('Title cannot be empty');</script>";
 } else {
-  // Check if a similarly named thread already exists
+
+  // Check if a thread with the same name already exists
   $stmt = $conn->prepare("SELECT * FROM threads WHERE title = ?");
   $stmt->bind_param("s", $title);
   $stmt->execute();

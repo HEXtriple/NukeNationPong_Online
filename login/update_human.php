@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
 
     if ($stmt->execute()) {
       echo "Account information updated successfully.";
-      $_SESSION["userName"] = $newName; // Update the session variable
+      $_SESSION["userName"] = $newName; 
     } else {
       echo "Error updating account information: " . $stmt->error;
     }

@@ -39,7 +39,6 @@ if ($result->num_rows > 0) {} else {
   $stmt->execute();
 }
 
-// Redirect the user back to the previous page
 header("Location: {$_SERVER['HTTP_REFERER']}");
 exit();
 ?>
