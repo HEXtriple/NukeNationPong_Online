@@ -12,12 +12,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$email = $_SESSION["email"];
 $comment = $_POST['comment'];
 $thread_id = $_POST['thread_id'];
 $username = $_SESSION["userName"];
 
-if (!empty($email)) {
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
   $sql = "INSERT INTO posts (email, comment, thread_id, username) VALUES (?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ssss", $email, $comment, $thread_id, $username);

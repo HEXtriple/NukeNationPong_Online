@@ -17,13 +17,13 @@ if (isset($_SESSION["userName"]) && !empty($_SESSION["userName"])) {
       
     $sql = "SELECT profile_picture FROM users WHERE userName=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $_SESSION["userName"]);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     if ($row && $row['profile_picture']){
       $profile_picture = $row['profile_picture'];
-      echo'<img src="'.$profile_picture.'" alt="Profile Picture" width="100" height="100">';
+      echo'<img src="./'.$profile_picture.'" alt="Profile Picture" width="100" height="100"><br>';
     }else {
       echo'<img src="profilePictures/default.jpeg" alt="default Profile Picture" width="100" height="100"> <br>';
     }
@@ -72,16 +72,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 if(isset($_POST["delete"])) {
-  $username = $_SESSION["userName"];
-
-  $sql = "DELETE FROM users WHERE userName = '$username'";
-
-  if ($conn->query($sql) === TRUE) {
-    echo "Account deleted successfully";
-    session_destroy();
-  } else {
-    echo "Error deleting account: " . $conn->error;
-  }
+  header('Location: delete_user.php');
+  exit();
 }
 
 if(isset($_POST["logout"])) {

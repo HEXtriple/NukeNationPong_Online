@@ -32,7 +32,11 @@ if ($result->num_rows > 0) {
 echo "<h2>Back to <a href='forum.php'>forum</a></h2>";
 echo "<br>";
 
-// Fetch all posts in the thread
+// Fetch all posts, users and likes in the thread
+// This is used to make the code more readable, else i'd have to utilize three different sql SELECT oporations
+// Not only that but the while loop would have to be repeated seperatly for every segment with the three sql result variables 
+// The code below may seem complex but it essentially grabs columns from three different tables, one from posts, one from profile_pic, one from likes
+
 $sql = "SELECT posts.*, users.profile_picture , COUNT(likes.id) as likes_count 
         FROM posts 
         LEFT JOIN likes ON posts.id = likes.post_id 
@@ -51,7 +55,7 @@ if ($result && $result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     if ($row && $row['profile_picture']){
       $profile_picture = $row['profile_picture'];   
-      echo'<img src="'.$profile_picture.'" alt="Profile Picture" width="50" height="50"> ';
+      echo'<img src="../login/'.$profile_picture.'" alt="Profile Picture" width="50" height="50"> ';
     }else {
       echo'<img src="../login/profilePictures/default.jpeg" alt="default Profile Picture" width="50" height="50"> ';
     }
